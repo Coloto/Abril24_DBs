@@ -12,7 +12,7 @@ CREATE TABLE asunto(
 	fecha_inicio DATE,
 	fecha_fin DATE,
 	estado VARCHAR(20),
-	foreign key (dni_cliente) references cliente(dni_cliente)
+	foreign key (dni_cliente) references cliente(dni_cliente) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE procurador(
@@ -24,6 +24,6 @@ CREATE TABLE procurador(
 CREATE TABLE asunto_procurador(
 	n_expediente INT,
 	dni_procurador CHAR(9),
-	FOREIGN KEY (n_expediente) REFERENCES asunto(n_expediente),
-	FOREIGN KEY (dni_procurador) REFERENCES procurador(dni_procurador)
+	FOREIGN KEY (n_expediente) REFERENCES asunto(n_expediente) ON DELETE CASCADE ON UPDATE CASCADE,
+	FOREIGN KEY (dni_procurador) REFERENCES procurador(dni_procurador) ON DELETE CASCADE ON UPDATE CASCADE
 );
