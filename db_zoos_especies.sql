@@ -22,6 +22,6 @@ CREATE TABLE animal(
 	fecha_nacimiento DATE,
 	pais_origen VARCHAR(20),
 	continente VARCHAR(20),
-	FOREIGN KEY (id_zoo) REFERENCES zoo(id_zoo),
-	FOREIGN KEY (id_especie) REFERENCES especie(id_especie)
+	FOREIGN KEY (id_zoo) REFERENCES zoo(id_zoo) ON DELETE CASCADE ON UPDATE CASCADE,
+	FOREIGN KEY (id_especie) REFERENCES especie(id_especie) ON DELETE CASCADE ON UPDATE CASCADE
 );
