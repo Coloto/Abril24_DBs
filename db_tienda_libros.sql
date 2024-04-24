@@ -9,7 +9,7 @@ CREATE TABLE poblacion(
 	id_provincia INT,
 	nombre VARCHAR(20),
 	numero_habitantes INT,
-	FOREIGN KEY (id_provincia) REFERENCES provincia(id_provincia)
+	FOREIGN KEY (id_provincia) REFERENCES provincia(id_provincia) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE socio(
@@ -22,7 +22,7 @@ CREATE TABLE socio(
 	aval varchar(10),
 	numero_socio SERIAL,
 	id_provincia int,
-	FOREIGN KEY (id_provincia) REFERENCES provincia(id_provincia)
+	FOREIGN KEY (id_provincia) REFERENCES provincia(id_provincia) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE coleccion(
@@ -38,7 +38,7 @@ CREATE TABLE producto(
 	detalles VARCHAR(40),
 	autor VARCHAR(20),
 	id_coleccion INT,
-	FOREIGN KEY (id_coleccion) REFERENCES coleccion(id_coleccion)
+	FOREIGN KEY (id_coleccion) REFERENCES coleccion(id_coleccion) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE pedido(
@@ -48,8 +48,8 @@ CREATE TABLE pedido(
 	cantidad_libros INT,
 	metodo_pago VARCHAR(20),
 	metodo_envio VARCHAR(20),
-	FOREIGN KEY (dni_socio) REFERENCES socio(dni_socio),
-	FOREIGN KEY (id_producto) REFERENCES producto(id_producto)
+	FOREIGN KEY (dni_socio) REFERENCES socio(dni_socio) ON DELETE CASCADE ON UPDATE CASCADE,
+	FOREIGN KEY (id_producto) REFERENCES producto(id_producto) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE almacen(
@@ -57,14 +57,14 @@ CREATE TABLE almacen(
 	nombre VARCHAR(20),
 	fecha_inicio DATE,
 	id_provincia INT UNIQUE,
-	FOREIGN KEY (id_provincia) REFERENCES provincia(id_provincia)
+	FOREIGN KEY (id_provincia) REFERENCES provincia(id_provincia) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE producto_almacen(
 	id_producto INT,
 	id_almacen INT,
-	FOREIGN KEY (id_producto) REFERENCES producto(id_producto),
-	FOREIGN KEY (id_almacen) REFERENCES almacen(id_almacen)
+	FOREIGN KEY (id_producto) REFERENCES producto(id_producto) ON DELETE CASCADE ON UPDATE CASCADE,
+	FOREIGN KEY (id_almacen) REFERENCES almacen(id_almacen) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
-ALTER TABLE provincia ADD CONSTRAINT fk_almacen FOREIGN KEY (id_almacen) REFERENCES almacen(id_almacen);
+ALTER TABLE provincia ADD CONSTRAINT fk_almacen FOREIGN KEY (id_almacen) REFERENCES almacen(id_almacen) ON DELETE CASCADE ON UPDATE CASCADE;
