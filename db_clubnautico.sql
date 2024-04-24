@@ -12,7 +12,7 @@ CREATE TABLE barco(
 	nombre_barco VARCHAR(20),
 	numero_amarre VARCHAR(3),
 	cuota_amarre DECIMAL,
-	FOREIGN KEY (dni_socio) REFERENCES socio(dni_socio)
+	FOREIGN KEY (dni_socio) REFERENCES socio(dni_socio) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE salida(
@@ -22,5 +22,5 @@ CREATE TABLE salida(
 	destino VARCHAR(30),
 	nombre_patron VARCHAR(20),
 	dni_patron CHAR(9),
-	FOREIGN KEY (matricula) REFERENCES barco(matricula)
+	FOREIGN KEY (matricula) REFERENCES barco(matricula) ON DELETE CASCADE ON UPDATE CASCADE
 );
